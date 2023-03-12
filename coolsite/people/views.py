@@ -1,5 +1,5 @@
 from django.http import HttpResponse, Http404
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import *
 
 menu = [{'title': "ABOUT", 'url_name': 'about'},
@@ -25,8 +25,19 @@ def audition(request):
     return HttpResponse("The page about audition")
 def login(request):
     return HttpResponse("Авторизация")
+
+
 def show_post(request, post_id):
-    return HttpResponse(f"Отображение статьи с id = {post_id}")
+    post = get_object_or_404(People, pk=post_id)
+
+    context = {
+        'post': post,
+        'menu': menu,
+        'title': post.title,
+        'cat_selected': 1,
+    }
+
+    return render(request, 'people/post.html', context=context)
 def show_category(request, cat_id):
     posts = People.objects.filter(cat_id=cat_id)
 
