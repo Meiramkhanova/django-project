@@ -4,6 +4,12 @@
 <ul>
          {% for p in posts %}
          <li>
+             <p class="first">Category: {{p.cat}}</p>
+             {% if p.photo %}
+             <p>
+                 <img class="img-article-left" src="{{p.photo.url}}" alt="">
+             </p>
+             {% endif %}
                    <h2>{{p.title}}</h2>
                    {{p.content}}</p>
                    <hr>
