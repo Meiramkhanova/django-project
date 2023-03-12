@@ -1,3 +1,10 @@
+html, body {
+	margin: 0;
+	padding-left: 120px;
+	padding-right: 120px;
+	height: 100%;
+}
+
 .header{
 	padding-top: 15px;
 	margin-bottom: 50px;
@@ -6,9 +13,8 @@
 .mainmenu{
 	display: flex;
 	flex-direction: row;
-	padding-left: 250px;
-	padding-right: 250px;
 	justify-content: space-between;
+
 }
 
 ul {
@@ -17,8 +23,15 @@ ul {
 a{
 	text-decoration: none;
 	font-weight: bold;
-	font-size: 22px;
 	color: #1b1b1b;
+	font-size: 20px;
+}
+
+.logo {
+	background: url('../images/logoone.png') no-repeat ;
+	width: 70px;
+	height: 100px;
+	padding-right: 250px;
 }
 
 
