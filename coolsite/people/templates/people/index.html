@@ -15,13 +15,16 @@
                  {% endif %}
                  <div class="one-part-content-block">
                     <h2 class="title-of-content">{{p.title}}</h2>
-                    {{p.content}}
+                    {{p.content|truncatewords:50}}
                  </div>
              </div>
              <div class="link-read-post">
                  <a href="{{ p.get_absolute_url }}"><button class="button">Read</button></a>
              </div>
          </li>
+    <hr>
          {% endfor %}
+
 </ul>
+
 {% endblock %}

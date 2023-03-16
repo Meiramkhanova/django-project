@@ -44,7 +44,7 @@ def index(request):
 
 
 def about(request):
-    return render(request, 'people/index.html', {'menu': menu, 'title': 'О сайте'})
+    return render(request, 'people/main.html', {'menu': menu, 'title': 'О сайте'})
 def artists(request):
     return HttpResponse("The page about artists")
 
