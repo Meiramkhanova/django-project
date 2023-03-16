@@ -33,6 +33,7 @@ def error_500(request):
 
 def check(request, exception):
     pass
+
 def index(request):
     posts = People.objects.all()
     context = {
@@ -42,9 +43,13 @@ def index(request):
     return render(request, 'people/index.html', context=context)
 
 
-
 def about(request):
-    return render(request, 'people/main.html', {'menu': menu, 'title': 'О сайте'})
+    posts = People.objects.all()
+    context = {
+        'posts': posts,
+        'menu': menu,
+    }
+    return render(request, 'people/main.html', context=context)
 def artists(request):
     return HttpResponse("The page about artists")
 
