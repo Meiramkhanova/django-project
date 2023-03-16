@@ -1,20 +1,18 @@
 html, body {
 	margin: 0;
-	padding-left: 120px;
-	padding-right: 120px;
-	height: 100%;
+	padding-left: 130px;
+	padding-right: 130px;
 }
 
 .header{
 	padding-top: 15px;
-	margin-bottom: 50px;
+	height: 60px;
 }
 
-.mainmenu{
+.header-menu{
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
-
 }
 
 ul {
@@ -28,11 +26,78 @@ a{
 }
 
 .logo {
-	background: url('../images/logoone.png') no-repeat ;
+	background: url('../images/logo.jpg') no-repeat ;
 	width: 70px;
 	height: 100px;
 	padding-right: 250px;
 }
+
+.one-content-block{
+	display: flex;
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+
+.one-part-content-block{
+	display: flex;
+	flex-direction: column;
+	padding-left: 60px;
+	width: 700px;
+}
+
+.img{
+	height: 200px;
+	width: 200px;
+	object-fit: cover;
+}
+
+.title-of-content{
+	margin: 0;
+	padding-bottom: 10px;
+}
+
+.button{
+	background-color: #1b1b1b;
+	color: white;
+	width: 120px;
+	height: 45px;
+	font-size: 17px;
+	font-family: Arial;
+	font-weight: bold;
+	box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+	cursor: pointer;
+}
+
+.button:hover{
+	background-color: white;
+	color: #1b1b1b;
+	box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+.one-full-content{
+	width: 900px;
+	padding-left: 20px;
+	padding-bottom: 20px;
+	padding-top: 80px;
+}
+.link-read-post{
+	padding-left: 780px;
+	padding-bottom: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

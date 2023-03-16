@@ -3,17 +3,24 @@
 {% block content %}
 <ul>
          {% for p in posts %}
-         <li>
-             <p class="first">Category: {{p.cat}}</p>
-             {% if p.photo %}
-             <p>
-                 <img class="img" src="{{p.photo.url}}" alt="">
-             </p>
-             {% endif %}
-                   <h2>{{p.title}}</h2>
-                   {{p.content}}</p>
-                   <hr>
-             <p class="link-read-post"><a href="{{ p.get_absolute_url }}">Читать пост</a></p>
+         <li  class="one-full-content">
+             <div class="category_text_post">
+                 Category: {{p.cat}}
+             </div>
+             <div class="one-content-block">
+                 {% if p.photo %}
+                 <div>
+                     <img class="img" src="{{p.photo.url}}" alt="">
+                 </div>
+                 {% endif %}
+                 <div class="one-part-content-block">
+                    <h2 class="title-of-content">{{p.title}}</h2>
+                    {{p.content}}
+                 </div>
+             </div>
+             <div class="link-read-post">
+                 <a href="{{ p.get_absolute_url }}"><button class="button">Read</button></a>
+             </div>
          </li>
          {% endfor %}
 </ul>

@@ -1,5 +1,4 @@
 {% load static %}
-<!DOCTYPE html>
 <html>
 <head>
     <title>{{title}}</title>
@@ -8,7 +7,7 @@
 <body>
 {% block mainmenu %}
 <div class="header">
-    <ul class="mainmenu">
+    <ul class="header-menu">
 <li class="logo"><a href="{% url 'home' %}"><div class="logo"></div></a></li>
        {% for m in menu %}
          {% if not forloop.last %}
@@ -19,8 +18,9 @@
 {% endfor %}
     </ul>
 </div>
+<hr>
 {% endblock mainmenu %}
- 
+
 {% block content %}
 {% endblock %}
 </body>

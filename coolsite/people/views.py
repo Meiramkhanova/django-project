@@ -1,5 +1,6 @@
 from django.http import HttpResponse, Http404
 from django.shortcuts import render, get_object_or_404
+
 from .models import *
 
 menu = [{'title': "ABOUT", 'url_name': 'about'},
@@ -53,14 +54,14 @@ def login(request):
     return HttpResponse("Авторизация")
 
 
-def show_post(request, post_id):
-    post = get_object_or_404(People, pk=post_id)
+def show_post(request, post_slug):
+    post = get_object_or_404(People, slug=post_slug)
 
     context = {
         'post': post,
         'menu': menu,
         'title': post.title,
-        'cat_selected': 1,
+        'cat_selected': post.cat_id,
     }
 
     return render(request, 'people/post.html', context=context)
