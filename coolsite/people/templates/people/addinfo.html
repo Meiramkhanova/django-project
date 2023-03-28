@@ -1,0 +1,7 @@
+{% extends 'people/base.html' %}
+
+<form action="{% url 'audition' %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Добавить</button>
+</form>

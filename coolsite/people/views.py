@@ -1,6 +1,7 @@
 from django.http import HttpResponse, Http404
 from django.shortcuts import render, get_object_or_404
 
+from .forms import *
 from .models import *
 
 menu = [{'title': "ABOUT", 'url_name': 'about'},
@@ -54,7 +55,13 @@ def artists(request):
     return HttpResponse("The page about artists")
 
 def audition(request):
-    return HttpResponse("The page about audition")
+    if request.method == 'POST':
+        form = AddPostForm(request.POST)
+        if form.is_valid():
+            print(form.cleaned_data)
+    else:
+        form = AddPostForm()
+    return render(request, 'people/addinfo.html', {'menu': menu, 'title': 'Добавление статьи', 'form': form})
 def login(request):
     return HttpResponse("Авторизация")
 
