@@ -1,0 +1,12 @@
+.header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.logo {
+	background: url('../images/logo.jpg') no-repeat ;
+	width: 70px;
+	height: 100px;
+}
+
+

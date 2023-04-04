@@ -1,0 +1,23 @@
+{% load static %}
+
+<html>
+<head>
+    <title>Audition</title>
+    <link rel="stylesheet" href="{% static 'people/css/audition-style.css' %}">
+</head>
+<body>
+    {% block mainmenu %}
+        <div class="navbar">
+            <ul class="header">
+                <li class="logo"><a href="{% url 'home' %}"></a></li>
+                {% for a in menu %}
+                    <li><a href="{% url a.url_name %}">{{a.title}}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endblock mainmenu %}
+
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

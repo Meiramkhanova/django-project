@@ -29,8 +29,23 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+    def get_absolete_url(self):
+        return reverse('category', kwargs={'cat_slug': self.slug})
     class Meta:
         verbose_name = 'Категория'
         verbose_name_plural = 'Категории'
         ordering = ['id']
+
+class Audition(models.Model):
+    name = models.CharField(max_length=255)
+    slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name="URL")
+    age = models.CharField(max_length=255)
+    photo = models.ImageField(upload_to="photos/%Y/%m/%d/")
+    capabilities = models.CharField(max_length=255)
+    country = models.CharField(max_length=255)
+    is_published = models.BooleanField(default=True)
+
+
+
+
 

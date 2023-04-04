@@ -1,0 +1,18 @@
+{% extends 'people/base.html' %}
+
+{% block content %}
+    {% for p in posts %}
+        <li  class="one-full-content">
+            <h2 >{{p.name}}</h2>
+            <h2 >{{p.age}}</h2>
+            <h2 >{{p.capabilities}}</h2>
+            <h2 >{{p.country}}</h2>
+            {% if p.photo %}
+                 <div>
+                     <img class="img" src="{{p.photo.url}}" alt="">
+                 </div>
+                 {% endif %}
+        </li>
+    {% endfor %}
+
+{% endblock %}
