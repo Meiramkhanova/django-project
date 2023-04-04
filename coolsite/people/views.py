@@ -58,7 +58,7 @@ class AddInfo(LoginRequiredMixin ,DataMixin, CreateView):
     raise_exception = True
     form_class = AddPostForm
     template_name = 'people/addinfo.html'
-    success_url = reverse_lazy('addinfo')
+    success_url = reverse_lazy('audition_people')
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
