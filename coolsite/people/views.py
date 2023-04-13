@@ -27,7 +27,7 @@ class PeopleHome(DataMixin,ListView):
         return context
 
     def get_queryset(self):  # to make a choice in panel admin to publish or not
-        return People.objects.filter(is_published = True)
+        return People.objects.filter(is_published = True).select_related('cat')
 
 #def index(request):
  #   posts = People.objects.all()
@@ -132,12 +132,14 @@ class PeopleCategory(DataMixin, ListView):
     template_name = 'people/index.html'
     context_object_name = 'posts'
 
-    # def get_queryset(self):
-    #     return People.objects.filter(cat_slug = self.kwargs['cat_slug'], is_published=True)
+    def get_queryset(self):
+        c = Category.objects.get(slug = self.kwargs['cat_slug'])
+        return People.objects.filter(cat_slug = self.kwargs['cat_slug'], is_published=True).select_related('cat')
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        c_def = self.get_user_context(title='Категория - ' + str(context['posts'][0].cat),
-                                      cat_selected=context['posts'][0].cat_id)
+        c = Category.objects.get(slug = self.kwargs['cat_slug'])
+        c_def = self.get_user_context (title='Категория - ' + str(c.name),
+                                      cat_selected=c.pk)
 
         return dict(list(context.items()) + list(c_def.items()))
 
