@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.http import HttpResponse, Http404
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
@@ -43,12 +44,22 @@ def audition_people(request):
 
 @login_required
 def about(request):
-    posts = People.objects.all()
-    context = {
-        'posts': posts,
-        'menu': menu,
-    }
-    return render(request, 'people/about.html', context=context)
+    contact_list = People.objects.all()
+    paginator = Paginator(contact_list, 3)
+
+    page_number = request.GET.get('page')
+    try:
+        page_obj = paginator.get_page(page_number)
+    except PageNotAnInteger:
+        # If page_number is not an integer, display the first page.
+        page_obj = paginator.get_page(1)
+    except EmptyPage:
+        # If page_number is out of range, display the last page of results.
+        page_obj = paginator.get_page(paginator.num_pages)
+
+    return render(request, 'people/about.html', {'page_obj': page_obj, 'menu': menu, 'title': 'О сайте'})
+
+
 def artists(request):
     return HttpResponse("The page about artists")
 
@@ -82,7 +93,7 @@ def login(request):
     return HttpResponse("Авторизация")
 
 
-class ShowPost(DetailView):
+class ShowPost(DataMixin, DetailView):
     model = People
     template_name = 'people/post.html'
     slug_url_kwarg = 'post_slug'
@@ -109,7 +120,8 @@ class ShowPost(DetailView):
     #return render(request, 'people/post.html', context=context)
 
 
-class PeopleCategory(ListView):
+class PeopleCategory(DataMixin, ListView):
+    paginate_by = 3
     model = People
     template_name = 'people/index.html'
     context_object_name = 'posts'

@@ -8,6 +8,7 @@
 {% block mainmenu %}
 <div class="header">
     <ul class="header-menu">
+
 <li class="logo"><a href="{% url 'home' %}"><div class="logo"></div></a></li>
        {% for m in menu %}
          {% if not forloop.last %}
@@ -22,6 +23,34 @@
 {% endblock mainmenu %}
 
 {% block content %}
+
 {% endblock %}
+
+{% if page_obj.has_other_pages %}
+<nav class="list-pages">
+    <ul>
+            {% if page_obj.has_previous %}
+        <li class="page-num">
+                 <a href="?page={{ page_obj.previous_page_number }}">&lt;</a>
+        </li>
+            {% endif %}
+                {% for p in paginator.page_range %}
+                           {% if page_obj.number == p %}
+                <li class="page-num page-num-selected">{{ p }}</li>
+                           {% elif p >= page_obj.number|add:-1 and p <= page_obj.number|add:1  %}
+                <li class="page-num">
+                    <a href="?page={{ p }}">{{ p }}</a>
+                </li>
+                           {% endif %}
+        {% endfor %}
+        {% if page_obj.has_next %}
+<li class="page-num">
+         <a href="?page={{ page_obj.next_page_number }}">&gt;</a>
+</li>
+{% endif %}
+    </ul>
+</nav>
+{% endif %}
+
 </body>
 </html>

@@ -20,7 +20,7 @@ class People(models.Model):
     class Meta:
         verbose_name = "Stars"
         verbose_name_plural = "Stars"
-        ordering = ['time_create', 'title']
+        ordering = ['id']
 
 
 class Category(models.Model):
