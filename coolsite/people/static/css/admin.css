@@ -1,0 +1,27 @@
+#header, .module caption{
+    background: #c4b5fd;
+}
+div.breadcrumbs{
+    background: #c4b5fd;
+    margin-top: 25px;
+}
+#branding h1 a:link, #branding h1 a:visited{
+    color: #64748b;
+    font-size: 26px;
+}
+body{
+    background-color: #e2e8f0;
+}
+.button, input[type=submit], input[type=button], .submit-row input, a.button{
+    background: #c4b5fd;
+}
+
+.selector-chosen h2{
+    background: #c4b5fd;
+}
+.button.default, input[type=submit].default, .submit-row input.default {
+    background: #c4b5fd;
+}
+.module h2, .module caption, .inline-group h2{
+    background-color: #c4b5fd;
+}
