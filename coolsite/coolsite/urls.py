@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.conf.urls.static import static
+from people.views import PeopleAPIView
 
 from django.urls import path
 
@@ -25,6 +26,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('people.urls')),
     path('captcha', include('captcha.urls')),
+    path('api/v1/peoplelist/', PeopleAPIView.as_view()),
+    path('api/v1/peoplelist/<int:pk>/', PeopleAPIView.as_view()),
 ]
 if settings.DEBUG:
     import debug_toolbar

@@ -7,10 +7,15 @@ from django.http import HttpResponse, Http404
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, FormView
+from rest_framework.response import Response
+from rest_framework.views import APIView
+
 from .forms import *
 from .models import *
+from .serializers import PeopleSerializer
 from .utils import *
 from django.contrib.auth.mixins import LoginRequiredMixin
+from rest_framework import generics
 
 
 
@@ -221,9 +226,49 @@ class ContactFormView(DataMixin, FormView):
 
 
 
+class PeopleAPIView(APIView):
+    def get(self,request):
+        p = People.objects.all()
+        return Response({'posts': PeopleSerializer(p, many=True).data})
 
+    def post(self, request):
+        serializer = PeopleSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
 
+        return Response({'post': serializer.data})
 
+    def put(self,request, *args, **kwargs):
+        pk = kwargs.get("pk", None)
+
+        if not pk:
+            return Response({"error": "Method PUT not allowed"})
+
+        try:
+            instance = People.objects.get(pk = pk)
+
+        except:
+            return Response({"error": "Object does not exists"})
+
+        serializer = PeopleSerializer(data=request.data, instance = instance)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response({"post": serializer.data})
+
+    def delete(self, request, *args, **kwargs):
+        pk = kwargs.get("pk", None)
+
+        if not pk:
+            return Response({"error": "Method DELETE not allowed"})
+
+        try:
+            instance = People.objects.get(pk = pk)
+            instance.delete()
+
+        except :
+            return Response({"error" : "Object does not exists"})
+
+        return Response({"post": "delete post " + str(pk)})
 
 
 

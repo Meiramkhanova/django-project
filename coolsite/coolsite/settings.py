@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'captcha',
     'people.apps.PeopleConfig',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
