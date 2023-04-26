@@ -20,16 +20,18 @@
         {% endif %}
     </ul>
 </div>
-<hr>
 {% endblock mainmenu %}
 
-{% block content %}
+<div class="forall">
+    {% block content %}
 
 {% endblock %}
+</div>
+
 
 {% if page_obj.has_other_pages %}
 <nav class="list-pages">
-    <ul>
+    <ul class="content">
             {% if page_obj.has_previous %}
         <li class="page-num">
                  <a href="?page={{ page_obj.previous_page_number }}">&lt;</a>

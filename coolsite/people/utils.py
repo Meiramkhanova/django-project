@@ -4,7 +4,6 @@ from django.core.cache import cache
 from .models import *
 
 menu = [{'title': "ABOUT", 'url_name': 'about'},
-        {'title': "ARTISTS", 'url_name': 'artists'},
         {'title': "AUDITION", 'url_name': 'addinfo'},
         {'title': "FEEDBACK", 'url_name': 'contact'},
 ]

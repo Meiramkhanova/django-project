@@ -17,6 +17,7 @@ class People(models.Model):
 
     def __str__(self):
         return self.title
+
     def get_absolute_url(self):
         return reverse('post', kwargs={'post_slug': self.slug})
 
@@ -27,17 +28,20 @@ class People(models.Model):
 
 
 class Category(models.Model):
-    name = models.CharField(max_length=100, db_index=True,  verbose_name='Category')
+    name = models.CharField(max_length=100, db_index=True, verbose_name='Category')
     slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name="URL")
+
     def __str__(self):
         return self.name
 
     def get_absolete_url(self):
         return reverse('category', kwargs={'cat_slug': self.slug})
+
     class Meta:
         verbose_name = 'Категория'
         verbose_name_plural = 'Категории'
         ordering = ['id']
+
 
 class Audition(models.Model):
     name = models.CharField(max_length=255)
@@ -47,8 +51,3 @@ class Audition(models.Model):
     capabilities = models.CharField(max_length=255)
     country = models.CharField(max_length=255)
     is_published = models.BooleanField(default=True)
-
-
-
-
-

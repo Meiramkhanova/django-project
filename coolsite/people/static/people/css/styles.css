@@ -1,13 +1,26 @@
 html, body {
-	margin: 0;
-	padding-left: 130px;
-	padding-right: 130px;
+	margin:0;
+	padding: 0;
 }
 
 .header{
 	padding-top: 15px;
 	height: 60px;
+	background-color: #e7e5e4;
+	margin:0;
+	padding-right: 80px;
+	/*position: fixed;*/
+	/*top:0;*/
+	/*left:0;*/
+	/*right:0;*/
 }
+
+.forall{
+	margin-left: 180px;
+	margin-right: 280px;
+}
+
+
 
 .header-menu{
 	display: flex;
@@ -23,12 +36,13 @@ a
 {
 	text-decoration: none;
 	font-weight: bold;
+	/*color: white;*/
 	color: #1b1b1b;
 	font-size: 20px;
 }
 
 .logo {
-	background: url('../images/logo.jpg') no-repeat ;
+	background: url('../images/logo2.png') no-repeat ;
 	width: 70px;
 	height: 100px;
 	padding-right: 250px;
@@ -89,11 +103,10 @@ a
 }
 .list-pages {
 	text-align: center;
-	margin: 0 0 20px 0;
 }
 
 .list-pages ul {
-	margin: 20px 0 0 0;
+	margin: 120px 0 0 0;
 	padding: 0;
 	list-style: none;
 }
