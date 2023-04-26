@@ -1,6 +1,6 @@
 Task 0:
 
-Project name: YG Music Vaul
+Project name: YG Music Vault
 
 Description:
 
@@ -15,5 +15,7 @@ People has a many-to-one relationship with Category, which means that each perso
 Audition is a separate entity with its own attributes, and is not related to Category or People.
 
 To access admin panel:
+
 adina
+
 adina123456
