@@ -7,6 +7,7 @@ from django.http import HttpResponse, Http404
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, FormView
+from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import GenericViewSet
@@ -228,8 +229,21 @@ class PeopleViewSet(mixins.CreateModelMixin,
                     mixins.DestroyModelMixin,
                     mixins.ListModelMixin,
                     GenericViewSet):
-    queryset = People.objects.all()
+    # queryset = People.objects.all()
     serializer_class = PeopleSerializer
+
+    def get_queryset(self):
+        pk = self.kwargs.get("pk")
+
+        if not pk:
+            return People.objects.all()[:4]
+
+        return People.objects.filter(pk=pk)
+
+    @action(methods=['get'], detail=True)
+    def category(self, request, pk= None):
+        cats = Category.objects.get(pk=pk)
+        return Response({'cats': cats.name})
 
 # class PeopleAPIList(generics.ListCreateAPIView):
 #     queryset = People.objects.all()

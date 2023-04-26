@@ -22,9 +22,23 @@ from coolsite import settings
 from people.views import *
 from django.urls import path, include
 
+# class MyCustomRouter(routers.SimpleRouter):
+#     routes = [
+#         routers.Route(url=r'^{prefix}$',
+#                       mapping={'get': 'list'},
+#                       name='{basename}-list',
+#                       detail=False,
+#                       initkwargs={'suffix': 'List'}),
+#         routers.Route(url=r'^{prefix}/{lookup}$',
+#                       mapping={'get': 'retrieve'},
+#                       name='{basename}-detail',
+#                       detail=True,
+#                       initkwargs={'suffix': 'Detail'})
+#     ]
 
-router = routers.SimpleRouter()
-router.register(r'people', PeopleViewSet)
+router = routers.DefaultRouter()
+router.register(r'people', PeopleViewSet, basename='people')
+print(router.urls)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
