@@ -15,19 +15,27 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.conf.urls.static import static
-from people.views import PeopleAPIView
-
+from people.views import *
 from django.urls import path
-
+from rest_framework import routers
 from coolsite import settings
 from people.views import *
 from django.urls import path, include
+
+
+router = routers.SimpleRouter()
+router.register(r'people', PeopleViewSet)
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('people.urls')),
     path('captcha', include('captcha.urls')),
-    path('api/v1/peoplelist/', PeopleAPIView.as_view()),
-    path('api/v1/peoplelist/<int:pk>/', PeopleAPIView.as_view()),
+    path('api/v1/', include(router.urls)), #https://127.0.0.1:8000/api/v1/people/
+    # path('api/v1/peoplelist/', PeopleViewSet.as_view({'get': 'list'})),
+    # path('api/v1/peoplelist/<int:pk>/', PeopleViewSet.as_view({'put':'update'})),
+    # path('api/v1/peoplelist/', PeopleAPIList.as_view()),
+    # path('api/v1/peoplelist/<int:pk>/', PeopleAPIUpdate.as_view()),
+    # path('api/v1/peopledetail/<int:pk>/', PeopleAPIDetailView.as_view()),
 ]
 if settings.DEBUG:
     import debug_toolbar
