@@ -35,21 +35,21 @@ from django.urls import path, include
 #                       detail=True,
 #                       initkwargs={'suffix': 'Detail'})
 #     ]
-
-router = routers.DefaultRouter()
-router.register(r'people', PeopleViewSet, basename='people')
-print(router.urls)
+#
+# router = routers.DefaultRouter()
+# router.register(r'people', PeopleViewSet, basename='people')
+# print(router.urls)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('people.urls')),
     path('captcha', include('captcha.urls')),
-    path('api/v1/', include(router.urls)), #https://127.0.0.1:8000/api/v1/people/
+    # path('api/v1/', include(router.urls)), #https://127.0.0.1:8000/api/v1/people/
     # path('api/v1/peoplelist/', PeopleViewSet.as_view({'get': 'list'})),
     # path('api/v1/peoplelist/<int:pk>/', PeopleViewSet.as_view({'put':'update'})),
-    # path('api/v1/peoplelist/', PeopleAPIList.as_view()),
-    # path('api/v1/peoplelist/<int:pk>/', PeopleAPIUpdate.as_view()),
-    # path('api/v1/peopledetail/<int:pk>/', PeopleAPIDetailView.as_view()),
+    path('api/v1/people/', PeopleAPIList.as_view()),
+    path('api/v1/people/<int:pk>/', PeopleAPIUpdate.as_view()),
+    path('api/v1/peopledelete/<int:pk>/', PeopleAPIDestroy.as_view()),
 ]
 if settings.DEBUG:
     import debug_toolbar

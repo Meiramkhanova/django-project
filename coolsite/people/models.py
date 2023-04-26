@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
 
@@ -12,6 +13,8 @@ class People(models.Model):
     time_update = models.DateTimeField(auto_now=True)
     is_published = models.BooleanField(default=True)
     cat = models.ForeignKey('Category', on_delete=models.PROTECT)
+    user = models.ForeignKey(User, verbose_name="User", on_delete=models.CASCADE)
+
     def __str__(self):
         return self.title
     def get_absolute_url(self):
