@@ -15,8 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.conf.urls.static import static
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenVerifyView, TokenRefreshView
+
 from people.views import *
-from django.urls import path
+from django.urls import path, re_path
 from rest_framework import routers
 from coolsite import settings
 from people.views import *
@@ -51,6 +53,11 @@ urlpatterns = [
     path('api/v1/people/', PeopleAPIList.as_view()),
     path('api/v1/people/<int:pk>/', PeopleAPIUpdate.as_view()),
     path('api/v1/peopledelete/<int:pk>/', PeopleAPIDestroy.as_view()),
+    path('api/v1/auth/', include('djoser.urls')),
+    re_path('r^auth', include('djoser.urls.authtoken')),
+    path('api/v1/token/', TokenObtainPairView.as_view(), name = 'token_obtain_pair'),
+    path('api/v1/token/refresh/', TokenRefreshView.as_view(), name = 'token_refresh'),
+    path('api/v1/token/verify', TokenVerifyView.as_view(), name = 'token_verify'),
 ]
 if settings.DEBUG:
     import debug_toolbar
