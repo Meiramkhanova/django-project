@@ -8,6 +8,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, FormView
 from rest_framework.decorators import action
+from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAdminUser, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -247,10 +248,17 @@ class ContactFormView(DataMixin, FormView):
 #         cats = Category.objects.get(pk=pk)
 #         return Response({'cats': cats.name})
 
+
+class PeopleAPIListPagination(PageNumberPagination):
+    page_size = 3
+    page_size_query_param = 'page_size'
+    max_page_size = 10000
+
 class PeopleAPIList(generics.ListCreateAPIView):
     queryset = People.objects.all()
     serializer_class = PeopleSerializer
     permission_classes = (IsAuthenticatedOrReadOnly,)
+    pagination_class = PeopleAPIListPagination
 
 
 class PeopleAPIUpdate(generics.RetrieveUpdateAPIView):
