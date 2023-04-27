@@ -47,6 +47,7 @@ urlpatterns = [
     # path('api/v1/', include(router.urls)), #https://127.0.0.1:8000/api/v1/people/
     # path('api/v1/peoplelist/', PeopleViewSet.as_view({'get': 'list'})),
     # path('api/v1/peoplelist/<int:pk>/', PeopleViewSet.as_view({'put':'update'})),
+    path('api/v1/drf-auth/', include('rest_framework.urls')),
     path('api/v1/people/', PeopleAPIList.as_view()),
     path('api/v1/people/<int:pk>/', PeopleAPIUpdate.as_view()),
     path('api/v1/peopledelete/<int:pk>/', PeopleAPIDestroy.as_view()),
