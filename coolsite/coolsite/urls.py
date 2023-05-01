@@ -26,8 +26,6 @@ from people.views import *
 from django.urls import path, include
 
 
-from django.views.static import serve
-from django.conf.urls import url
 
 # class MyCustomRouter(routers.SimpleRouter):
 #     routes = [
@@ -64,8 +62,7 @@ urlpatterns = [
     path('api/v1/token/refresh/', TokenRefreshView.as_view(), name = 'token_refresh'),
     path('api/v1/token/verify', TokenVerifyView.as_view(), name = 'token_verify'),
 
-    url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
-    url(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT}),
+
 ]
 if settings.DEBUG:
     import debug_toolbar
